@@ -1,0 +1,72 @@
+:root {
+	box-sizing: border-box;
+	--rows-gap: 2px;
+}
+body {
+	min-height: 100vh;
+	min-width: 100%;
+	background-color: #222;
+	color: #ccc;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 2rem;
+	font-weight: bold;
+	overflow: hidden;
+}
+
+.clock {
+	display: flex;
+	gap: 5px
+}
+.hour, 
+.min,
+.sec{
+	display: flex;
+	gap: var(--rows-gap);
+}
+.column {
+	display: flex;
+	flex-direction: column;
+	gap: var(--rows-gap);
+}
+.row {
+	width: 20px;
+	height: 20px;
+}
+.row.active-row {
+	background-color: #013220;
+}
+.row.active-row.light-row {
+	position: relative;
+}
+.row.active-row::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 0;
+	display: block;
+	animation: disapear-light 500ms 1 ease forwards;
+}
+.row.active-row.light-row:after {
+	background-color: #ccc;
+	animation: apear-light 500ms 1 ease forwards;
+}
+@keyframes disapear-light {
+	from {
+		height: 100%;
+	}
+	to {
+		height: 0;
+	}
+}
+@keyframes apear-light {
+	from {
+		height: 0;
+	}
+	to {
+		height: 100%;
+	}
+}
